@@ -1,0 +1,102 @@
+Jatter v1.2 - Interactive chat bot for Jabber
+
+(c)2006 Andy Smith - andy.smith@netprojects.org.uk
+
+Features
+--------
+
+* Reminder system
+* RSS feed reader/subscription system
+* Simple groupchat facility
+
+Online help is available by doing '!help'. Still no
+documentation - have a look at the source :)
+
+0. Pre-requisites
+
+Jatter comes with the following, which are required:-
+
+* ADODb (http://adodb.sourceforge.net/)
+- for database connectivity
+
+* class.jabber.php (http://cjphp.netflint.net/)
+- for the Jabber connection class. The version included has been
+  modified slightly.
+
+and the following which are optional:-
+
+* lastRSS (http://lastrss.webdot.cz/)
+- for RSS feed parsing
+
+All are licensed under the LGPL or GPL and as such are included here.
+
+1. Installation
+
+i.   Unpack the archive and move to a place of your choosing.
+
+ii.  Create a database and import contrib/jatter.sql into it.
+
+iii. Edit config/conf.inc.php and change the Jabber/DB settings to suit.
+     
+     If the account you're using doesn't exist, Jatter will attempt
+     to create one. If this is the case, it's worthwhile running
+     Jatter with:-
+     
+	php ./jatter.php
+     
+     on the first run to make sure a connection is made.
+
+vi.  Once running, please consider running !admin success. This will
+     subscribe to a JID (jatter-success@jabber.netprojects.org.uk) so
+     we can get an idea of Jatter's usage. Doing this will also allow
+     jatter-success@jabber.netprojects.org.uk to see when your bot is
+     online. If this is a problem for you, you should be able to remove
+     authorisation from it by doing:-
+
+     	!admin unauth jatter-success@jabber.netprojects.org.uk
+
+2. Starting
+
+Start the bot with './jatter start'.
+
+To debug, change $jatter_debug to TRUE in config/conf.inc.php and start with
+
+   php ./jatter.php
+
+3. Stopping
+
+Stop the bot with './jatter stop', or by sending '!admin halt'
+
+4. Restarting
+
+Restart the bot with './jatter restart', or by sending '!admin restart'
+
+5. Known bugs
+
+None that are known, but there's undoubtably some hiding away somewhere.
+
+The MySQL schema (bot.sql) is taken from a MySQL 5.x installation and
+may or may not work for you. It also has a table or two that isn't in
+use.
+
+Admin commands aren't displayed when you do '!help' - read
+core/admin.inc.php if you want to know what they are.
+
+If you subscribe to too many RSS feeds, or if any of the feeds are
+particularly slow, it slows everything down (see 6. Todo, below).
+
+In short, if it doesn't work for you, see the website. And if you're
+not busy, feel free to help out with development!
+
+6. Todo
+
+* The RSS feed checker can slow Jatter down. It might be a good idea
+to run something in parallel with the main Jatter process to do this.
+
+* Improve the 'jatter' start script.
+* Move the roster state array into the DB.
+* grep -r TODO * ;)
+
+6. Further info
+
+See http://jatter.sourceforge.net/

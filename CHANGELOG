@@ -1,0 +1,37 @@
+1.0 - 21.08.2006 - andys
+
+Initial release.
+
+1.01 - 21.08.2006 - andys
+
+Bugfix release (handler.inc.php references a non-existant file)
+
+1.02 - 22.08.2006 - andys
+
+* moved !say, !broadcast and !roster under the !admin commands
+* added !admin halt and !admin restart
+* bot.sh now does 'restart' also
+* added !admin unauth to unauth users
+* added !admin success to report successful install
+
+1.1 - 23.08.2006 - andys
+
+Major reorganisation of code into modules. Too many changes to
+mention. New features:-
+
+* !admin add and !admin del to add/remove admins. If no admins
+  are set up, the first user to subscribe to the bot is added
+  as an admin.
+* !chat and !nochat changed to !chat on and !chat off
+
+1.1.1 - 23.08.2006 - andys
+
+Fixed the bot bombing out when there's no RSS feeds added.
+
+1.2 - 16.09.2006 - andys
+
+* Few additions to the chat facility - added IRC-style '/me' ([me),
+  '/topic' ([topic) and user list ([list).
+* Fixed the reminder function so you could actually specify a date.
+* Adding a reminder noew gives you the reminder ID#
+

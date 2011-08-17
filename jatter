@@ -1,0 +1,32 @@
+#!/bin/bash
+
+COMMAND=$1
+
+echo "Jatter v1.2 - (c)2006 Andy Smith"
+
+#DELETE_ME_ONCE_README_IS_READ=1
+
+if [ X"$DELETE_ME_ONCE_README_IS_READ" = X"1" ]; then
+	echo ""
+	echo "*** PLEASE MAKE SURE YOU HAVE READ 'README' BEFORE RUNNING THIS ***"
+	echo "***            IT CONTAINS IMPORTANT INFORMATION                ***"
+	echo ""
+fi
+
+if [ X"$COMMAND" = X"start" ]; then
+	if [ -f /var/run/jatter.pid ]; then
+		echo "Bot is already running!"
+	else
+		php ./jatter.php 2>&1 >/dev/null &
+
+		PID=`ps -ef | grep jatter.php | grep "php " | grep -v grep | awk '{ print $2 }'`
+		echo $PID >/var/run/jatter.pid
+		echo "Bot started (PID $PID)"
+	fi
+elif [ X"$COMMAND" = X"stop" ]; then
+	kill -9 `cat /var/run/jatter.pid`
+	rm /var/run/jatter.pid
+elif [ X"$COMMAND" = X"restart" ]; then
+	$0 stop
+	$0 start
+fi
